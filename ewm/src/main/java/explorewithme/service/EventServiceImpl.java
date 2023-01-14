@@ -59,6 +59,9 @@ public class EventServiceImpl implements EventService {
         LocalDateTime now = LocalDateTime.now();
         Page<Event> events;
 
+        statClient.sendHit(new EndpointHit(null, "explorewithme", uri, ip,
+                LocalDateTime.now().format(formatter)));
+
         if (sort == null || sort.equals("EVENT_DATE"))
             page = PageRequest.of(from, size, Sort.by(Sort.Direction.DESC, "eventDate"));
         else if (sort.equals("VIEWS"))
@@ -73,9 +76,6 @@ public class EventServiceImpl implements EventService {
                     LocalDateTime.parse(rangeEnd, formatter), onlyAvailable, page);
         if (events == null)
             events = Page.empty();
-
-        statClient.sendHit(new EndpointHit(null, "explorewithme", uri, ip,
-                LocalDateTime.now().format(formatter)));
 
         return events.stream().map(EventMapper::toEventShortDto).collect(Collectors.toList());
     }
