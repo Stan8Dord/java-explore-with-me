@@ -1,0 +1,9 @@
+statservice\model\StatHits.class
+statservice\controller\StatController.class
+statservice\model\StatMapper.class
+statservice\repository\StatRepository.class
+statservice\model\EndpointHit.class
+statservice\service\StatService.class
+statservice\service\StatServiceImpl.class
+statservice\StatServiceApp.class
+statservice\model\ViewStats.class
