@@ -32,9 +32,9 @@ public class PublicController {
     }
 
     @GetMapping("/events")
-    public List<EventShortDto> getEvents(@RequestParam String text,
-                                         @RequestParam Long[] categories,
-                                         @RequestParam Boolean paid,
+    public List<EventShortDto> getEvents(@RequestParam(required = false) String text,
+                                         @RequestParam(required = false) Long[] categories,
+                                         @RequestParam(required = false) Boolean paid,
                                          @RequestParam(required = false) String rangeStart,
                                          @RequestParam(required = false) String rangeEnd,
                                          @RequestParam(defaultValue = "false") Boolean onlyAvailable,

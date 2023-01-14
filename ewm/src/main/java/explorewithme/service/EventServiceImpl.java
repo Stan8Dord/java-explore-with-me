@@ -51,6 +51,7 @@ public class EventServiceImpl implements EventService {
     private final LocalDateTime  now = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
 
     @Override
+    @Transactional
     public List<EventShortDto> getEvents(String text, Long[] categories, Boolean paid, String rangeStart,
                                          String rangeEnd, Boolean onlyAvailable, String sort,
                                          int fromNum, int size, String ip, String uri) {
@@ -81,6 +82,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Transactional
     public EventFullDto getEvent(long eventId, String ip, String uri) {
         Event event = checkEvent(eventId);
         event.setViews(event.getViews() + 1);
