@@ -229,8 +229,8 @@ public class EventServiceImpl implements EventService {
     @Override
     public EventFullDto publishEvent(long eventId, HttpServletRequest request) {
         Event event = checkEvent(eventId, request);
-        if (event.getEventDate().
-                isBefore(DateUtils.getTimeToMinutes().plusHours(1)) || !event.getState().equals(EventState.PENDING))
+        if (event.getEventDate()
+                .isBefore(DateUtils.getTimeToMinutes().plusHours(1)) || !event.getState().equals(EventState.PENDING))
             throw new BadRequestException(request.getParameterMap().toString());
 
         event.setState(EventState.PUBLISHED);
@@ -271,7 +271,8 @@ public class EventServiceImpl implements EventService {
             List<Request> reqs = requestRepository.findByEvent(eventId);
             reqs.stream().filter(req -> req.getStatus().equals("PENDING")).forEach((req) -> {
                 req.setStatus("REJECTED");
-                requestRepository.save(req);});
+                requestRepository.save(req);
+            });
         }
 
         return RequestMapper.toParticipationRequestDto(request);

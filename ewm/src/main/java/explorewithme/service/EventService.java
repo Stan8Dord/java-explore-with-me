@@ -10,6 +10,7 @@ public interface EventService {
     List<EventShortDto> getEvents(String text, Long[] categories, Boolean paid, String rangeStart,
                                   String rangeEnd, Boolean onlyAvailable, String sort,
                                   int from, int size, String ip, String uri, HttpServletRequest request);
+
     EventFullDto getEvent(long eventId, String ip, String uri, HttpServletRequest request);
 
     List<EventShortDto> getEventsByUser(long userId, int from, int size);

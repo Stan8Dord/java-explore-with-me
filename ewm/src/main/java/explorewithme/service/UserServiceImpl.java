@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @Override
     public List<User> getUsers(Long[] users, int fromNum, int size) {
         if (users != null) {
