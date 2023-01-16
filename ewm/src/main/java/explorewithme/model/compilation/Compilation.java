@@ -3,20 +3,20 @@ package explorewithme.model.compilation;
 import explorewithme.model.event.Event;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "compilations", schema = "public")
 public class Compilation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column
     private boolean pinned = false;
     @Column(nullable = false)
@@ -27,11 +27,5 @@ public class Compilation {
             joinColumns = { @JoinColumn(name = "compilation_id") },
             inverseJoinColumns = { @JoinColumn(name = "event_id")}
     )
-    List<Event> events;
-
-    public Compilation(boolean pinned, String title, List<Event> events) {
-        this.pinned = pinned;
-        this.title = title;
-        this.events = events;
-    }
+    private List<Event> events;
 }

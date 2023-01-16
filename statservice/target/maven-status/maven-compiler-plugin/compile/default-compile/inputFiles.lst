@@ -2,6 +2,7 @@ G:\MyCode\YPraktikum\java-explore-with-me\statservice\src\main\java\statservice\
 G:\MyCode\YPraktikum\java-explore-with-me\statservice\src\main\java\statservice\repository\StatRepository.java
 G:\MyCode\YPraktikum\java-explore-with-me\statservice\src\main\java\statservice\service\StatServiceImpl.java
 G:\MyCode\YPraktikum\java-explore-with-me\statservice\src\main\java\statservice\model\StatHits.java
+G:\MyCode\YPraktikum\java-explore-with-me\statservice\src\main\java\statservice\model\Constants.java
 G:\MyCode\YPraktikum\java-explore-with-me\statservice\src\main\java\statservice\model\EndpointHit.java
 G:\MyCode\YPraktikum\java-explore-with-me\statservice\src\main\java\statservice\model\ViewStats.java
 G:\MyCode\YPraktikum\java-explore-with-me\statservice\src\main\java\statservice\StatServiceApp.java

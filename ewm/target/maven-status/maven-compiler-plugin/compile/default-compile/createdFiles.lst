@@ -12,13 +12,17 @@ explorewithme\exceptions\ApiError.class
 explorewithme\model\user\User.class
 explorewithme\ExploreWithMeApp.class
 explorewithme\model\event\EventState.class
+explorewithme\exceptions\NotFoundUserException.class
 explorewithme\controller\PrivateController.class
 explorewithme\model\compilation\CompilationMapper.class
 explorewithme\client\StatClient.class
 explorewithme\model\request\ParticipationRequestDto.class
 explorewithme\exceptions\BadRequestException.class
+explorewithme\exceptions\NotFoundCategoryException.class
+explorewithme\exceptions\NotFoundCompilationException.class
 explorewithme\model\other\EndpointHit.class
 explorewithme\repository\RequestRepository.class
+explorewithme\exceptions\NotFoundRequestException.class
 explorewithme\model\request\Request.class
 explorewithme\model\user\UserMapper.class
 explorewithme\model\category\CategoryMapper.class
@@ -28,6 +32,7 @@ explorewithme\repository\EventRepository.class
 explorewithme\model\other\Location.class
 explorewithme\model\event\NewEventDto.class
 explorewithme\service\UserService.class
+explorewithme\exceptions\NotFoundEventException.class
 explorewithme\service\RequestService.class
 explorewithme\repository\UserRepository.class
 explorewithme\model\event\AdminUpdateEventRequest.class
@@ -47,5 +52,6 @@ explorewithme\model\category\Category.class
 explorewithme\model\request\RequestMapper.class
 explorewithme\service\EventServiceImpl.class
 explorewithme\model\event\Event.class
+explorewithme\model\other\DateUtils.class
 explorewithme\service\CompilationService.class
 explorewithme\repository\CompilationRepository.class

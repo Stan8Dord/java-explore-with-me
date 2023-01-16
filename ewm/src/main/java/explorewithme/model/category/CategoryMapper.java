@@ -1,5 +1,8 @@
 package explorewithme.model.category;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class CategoryMapper {
     public static CategoryDto toCategoryDto(Category category) {
         return new CategoryDto(

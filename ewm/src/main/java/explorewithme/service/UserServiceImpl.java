@@ -11,13 +11,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
@@ -38,12 +41,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addNewUser(NewUserRequest newUser) {
+    public User addNewUser(NewUserRequest newUser, HttpServletRequest request) {
         if (newUser.getName() == null)
-            throw new BadRequestException("Некорректный запрос");
+            throw new BadRequestException(request.getParameterMap().toString());
         Set<String> emails = userRepository.findAll().stream().map(User::getEmail).collect(Collectors.toSet());
         if (emails.contains(newUser.getEmail()))
-            throw new ConflictException("Повторяющееся значение email = " + newUser.getEmail());
+            throw new ConflictException("Повторяющееся значение email = " + newUser.getEmail() +
+                    ". Request path = " + request.getRequestURI());
         else
             return userRepository.save(UserMapper.toUser(newUser));
     }

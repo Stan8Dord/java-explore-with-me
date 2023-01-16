@@ -2,9 +2,12 @@ package explorewithme.model.compilation;
 
 import explorewithme.model.event.Event;
 import explorewithme.model.event.EventMapper;
+import lombok.experimental.UtilityClass;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@UtilityClass
 public class CompilationMapper {
     public static Compilation toCompilation(CompilationDto dto, List<Event> events) {
         return new Compilation(
@@ -24,6 +27,7 @@ public class CompilationMapper {
 
     public static Compilation toCompilation(NewCompilationDto dto, List<Event> events) {
         return new Compilation(
+                null,
                 dto.isPinned(),
                 dto.getTitle(),
                 events);

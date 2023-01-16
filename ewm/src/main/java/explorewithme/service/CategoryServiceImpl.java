@@ -2,7 +2,7 @@ package explorewithme.service;
 
 import explorewithme.exceptions.BadRequestException;
 import explorewithme.exceptions.ConflictException;
-import explorewithme.exceptions.NotFoundException;
+import explorewithme.exceptions.NotFoundCategoryException;
 import explorewithme.model.category.Category;
 import explorewithme.model.category.CategoryDto;
 import explorewithme.model.category.CategoryMapper;
@@ -16,12 +16,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
@@ -42,40 +44,42 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional(readOnly = true)
-    public CategoryDto getCategory(Long catId) {
-        Category category = checkCategory(catId);
+    public CategoryDto getCategory(Long catId, HttpServletRequest request) {
+        Category category = checkCategory(catId, request);
         return CategoryMapper.toCategoryDto(category);
     }
 
-    public Category checkCategory(Long catId) {
+    public Category checkCategory(Long catId, HttpServletRequest request) {
         Optional<Category> categoryOptional = categoryRepository.findById(catId);
 
         if (categoryOptional.isPresent())
             return categoryOptional.get();
         else
-            throw new NotFoundException("Не найдено!");
+            throw new NotFoundCategoryException(catId, request);
     }
 
     @Override
-    public CategoryDto addNewCategory(NewCategoryDto newCategory) {
-        if (newCategory.getName() == null)
-            throw new BadRequestException("Некорректный запрос");
-        if (getCategoryNames().contains(newCategory.getName())) {
-            throw new ConflictException("Такая категория уже существует!");
-        } else {
-            return CategoryMapper.toCategoryDto(categoryRepository.save(CategoryMapper.toCategory(newCategory)));
-        }
+    public CategoryDto addNewCategory(NewCategoryDto newCategory, HttpServletRequest request) {
+        checkCategoryName(newCategory.getName(), request);
+
+        return CategoryMapper.toCategoryDto(categoryRepository.save(CategoryMapper.toCategory(newCategory)));
+    }
+
+    private void checkCategoryName(String catName, HttpServletRequest request) {
+        if (catName == null)
+            throw new BadRequestException(request.getParameterMap().toString());
+        if (getCategoryNames().contains(catName))
+            throw new ConflictException(String.format("Такая категория %s уже существует! Request path = %s",
+                    catName, request.getRequestURI()));
     }
 
     @Override
-    public CategoryDto modifyCategory(CategoryDto categoryDto) {
+    public CategoryDto modifyCategory(CategoryDto categoryDto, HttpServletRequest request) {
         if (categoryDto.getId() <= 0)
-            throw new BadRequestException("Некорректный запрос");
-        if (getCategoryNames().contains(categoryDto.getName())) {
-            throw new ConflictException("Такая категория уже существует!");
-        } else {
-            return CategoryMapper.toCategoryDto(categoryRepository.save(CategoryMapper.toCategory(categoryDto)));
-        }
+            throw new BadRequestException(request.getParameterMap().toString());
+        checkCategoryName(categoryDto.getName(), request);
+
+        return CategoryMapper.toCategoryDto(categoryRepository.save(CategoryMapper.toCategory(categoryDto)));
     }
 
     public Set<String> getCategoryNames() {

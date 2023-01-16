@@ -8,13 +8,13 @@ import statservice.model.ViewStats;
 import statservice.repository.StatRepository;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import static statservice.model.Constants.formatter;
 
 @Service
 public class StatServiceImpl implements StatService {
     private final StatRepository statRepository;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     public StatServiceImpl(StatRepository statRepository) {

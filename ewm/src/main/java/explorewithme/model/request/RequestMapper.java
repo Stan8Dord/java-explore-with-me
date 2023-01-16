@@ -1,13 +1,14 @@
 package explorewithme.model.request;
 
-import java.time.format.DateTimeFormatter;
+import explorewithme.model.other.DateUtils;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class RequestMapper {
-    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     public static ParticipationRequestDto toParticipationRequestDto(Request request) {
         return new ParticipationRequestDto(
                 request.getId(),
-                request.getCreated().format(formatter),
+                request.getCreated().format(DateUtils.formatter),
                 request.getEvent(),
                 request.getRequester(),
                 request.getStatus());

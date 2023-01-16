@@ -1,3 +1,4 @@
+statservice\model\Constants.class
 statservice\model\StatHits.class
 statservice\controller\StatController.class
 statservice\model\StatMapper.class

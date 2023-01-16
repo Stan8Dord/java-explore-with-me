@@ -26,18 +26,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
                               LocalDateTime rangeEnd, Boolean onlyAvailable, Pageable page);
 
     @Query("select e from Event e " +
-            "where e.state = explorewithme.model.event.EventState.PUBLISHED " +
-            "and (lower(e.annotation) like lower(concat('%', ?1, '%')) " +
-            "or lower(e.description) like lower(concat('%', ?1, '%'))) " +
-            "and e.category.id in ?2 " +
-            "and e.paid = ?3 " +
-            "and (e.eventDate > ?4) " +
-            "and ((?5 = false) or (e.participantLimit = 0) " +
-            "or (?5 = true and e.confirmedRequests < e.participantLimit))")
-    Page<Event> getEventsCustom(String text, Long[] categories, Boolean paid, LocalDateTime nowDate,
-                              Boolean onlyAvailable, Pageable page);
-
-    @Query("select e from Event e " +
             "where e.initiator.id = ?1")
     List<Event> findByUser(long userId, Pageable page);
 

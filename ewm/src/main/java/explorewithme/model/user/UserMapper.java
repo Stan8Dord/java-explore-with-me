@@ -1,5 +1,8 @@
 package explorewithme.model.user;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class UserMapper {
     public static UserShortDto toUserShortDto(User user) {
         return new UserShortDto(
@@ -9,6 +12,9 @@ public class UserMapper {
     }
 
     public static User toUser(NewUserRequest newUser) {
-        return new User(newUser.getName(), newUser.getEmail());
+        return new User(
+                null,
+                newUser.getName(),
+                newUser.getEmail());
     }
 }

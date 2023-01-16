@@ -1,6 +1,7 @@
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\exceptions\ApiError.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\client\BaseClient.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\other\Location.java
+G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\other\DateUtils.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\exceptions\NotFoundException.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\other\EndpointHit.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\category\NewCategoryDto.java
@@ -15,8 +16,10 @@ G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\reposi
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\service\RequestServiceImpl.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\user\UserShortDto.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\repository\RequestRepository.java
+G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\exceptions\NotFoundUserException.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\event\EventShortDto.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\controller\PublicController.java
+G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\exceptions\NotFoundRequestException.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\event\NewEventDto.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\compilation\NewCompilationDto.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\request\ParticipationRequestDto.java
@@ -29,6 +32,7 @@ G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\category\CategoryDto.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\compilation\CompilationDto.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\exceptions\ConflictException.java
+G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\exceptions\NotFoundEventException.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\event\UpdateEventRequest.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\event\EventFullDto.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\repository\CategoryRepository.java
@@ -41,10 +45,12 @@ G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\except
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\user\User.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\request\Request.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\service\EventService.java
+G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\exceptions\NotFoundCompilationException.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\user\UserMapper.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\service\RequestService.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\client\StatClient.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\category\Category.java
+G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\exceptions\NotFoundCategoryException.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\service\CompilationServiceImpl.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\model\event\AdminUpdateEventRequest.java
 G:\MyCode\YPraktikum\java-explore-with-me\ewm\src\main\java\explorewithme\repository\UserRepository.java

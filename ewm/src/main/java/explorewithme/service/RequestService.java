@@ -2,6 +2,7 @@ package explorewithme.service;
 
 import explorewithme.model.request.ParticipationRequestDto;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface RequestService {
@@ -9,5 +10,5 @@ public interface RequestService {
 
     List<ParticipationRequestDto> getUserRequests(long userId);
 
-    ParticipationRequestDto addNewRequest(long userId, long eventId);
+    ParticipationRequestDto addNewRequest(long userId, long eventId, HttpServletRequest request);
 }

@@ -1,7 +1,8 @@
 package explorewithme.service;
 
 import explorewithme.exceptions.BadRequestException;
-import explorewithme.exceptions.NotFoundException;
+import explorewithme.exceptions.NotFoundCompilationException;
+import explorewithme.exceptions.NotFoundEventException;
 import explorewithme.model.compilation.Compilation;
 import explorewithme.model.compilation.CompilationDto;
 import explorewithme.model.compilation.CompilationMapper;
@@ -17,11 +18,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@Transactional
 public class CompilationServiceImpl implements  CompilationService {
     private final CompilationRepository compilationRepository;
     private final EventRepository eventRepository;
@@ -55,67 +57,60 @@ public class CompilationServiceImpl implements  CompilationService {
     }
 
     @Override
-    public CompilationDto getCompilation(Long compId) {
-        Compilation compilation = checkCompilation(compId);
+    public CompilationDto getCompilation(Long compId, HttpServletRequest request) {
+        Compilation compilation = checkCompilation(compId, request);
 
         return CompilationMapper.toCompilationDto(compilation);
     }
 
-    public Compilation checkCompilation(long compId) {
-        Optional<Compilation> compilationOptional = compilationRepository.findById(compId);
-
-        if (compilationOptional.isPresent())
-            return compilationOptional.get();
-        else
-            throw new NotFoundException("Not found");
+    public Compilation checkCompilation(long compId, HttpServletRequest request) {
+        return compilationRepository.findById(compId)
+                .orElseThrow(() -> new NotFoundCompilationException(compId, request));
     }
 
     @Override
-    public CompilationDto addNewCompilation(NewCompilationDto newCompilationDto) {
+    public CompilationDto addNewCompilation(NewCompilationDto newCompilationDto, HttpServletRequest request) {
         if (newCompilationDto.getTitle() == null)
-            throw new BadRequestException("Bad bad bad request");
+            throw new BadRequestException(request.getParameterMap().toString());
         List<Event> events = eventRepository.findAllById(newCompilationDto.getEvents());
         return CompilationMapper.toCompilationDto(
                 compilationRepository.save(CompilationMapper.toCompilation(newCompilationDto, events)));
     }
 
     @Override
-    public void addEventToCompilation(long compId, long eventId) {
+    public void addEventToCompilation(long compId, long eventId, HttpServletRequest request) {
         Compilation compilation = compilationRepository.findById(compId)
-                .orElseThrow(() -> new NotFoundException("Not found"));
+                .orElseThrow(() -> new NotFoundCompilationException(compId, request));
         Event event = eventRepository.findById(eventId)
-                .orElseThrow(() -> new NotFoundException("Not found"));
+                .orElseThrow(() -> new NotFoundEventException(eventId, request));
         compilation.getEvents().add(event);
 
         compilationRepository.save(compilation);
     }
 
     @Override
-    @Transactional
     public void pinCompilation(long compId) {
-        compilationRepository.pinCompilation(compId);
+        compilationRepository.changeCompilationPin(compId, true);
     }
 
     @Override
-    @Transactional
     public void deleteCompilation(long compId) {
         compilationRepository.deleteById(compId);
     }
 
     @Override
-    public void deleteEventFromCompilation(long compId, long eventId) {
+    public void deleteEventFromCompilation(long compId, long eventId, HttpServletRequest request) {
         Compilation compilation = compilationRepository.findById(compId)
-                .orElseThrow(() -> new NotFoundException("Not found"));
+                .orElseThrow(() -> new NotFoundCompilationException(compId, request));
         Event event = eventRepository.findById(eventId)
-                .orElseThrow(() -> new NotFoundException("Not found"));
+                .orElseThrow(() -> new NotFoundEventException(eventId, request));
         compilation.getEvents().remove(event);
 
         compilationRepository.save(compilation);
     }
 
     @Override
-    @Transactional
     public void unpinCompilation(long compId) {
-        compilationRepository.unpinCompilation(compId);
+        compilationRepository.changeCompilationPin(compId, false);
     }
 }

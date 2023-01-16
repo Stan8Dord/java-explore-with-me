@@ -13,10 +13,6 @@ public interface CompilationRepository extends JpaRepository<Compilation, Long> 
     Page<Compilation> findByPinned(Boolean pinned, Pageable page);
 
     @Modifying
-    @Query("update Compilation c set c.pinned = TRUE where c.id = ?1")
-    void pinCompilation(long compId);
-
-    @Modifying
-    @Query("update Compilation c set c.pinned = FALSE where c.id = ?1")
-    void unpinCompilation(long compId);
+    @Query("update Compilation c set c.pinned = ?2 where c.id = ?1")
+    void changeCompilationPin(long compId, boolean pinned);
 }
