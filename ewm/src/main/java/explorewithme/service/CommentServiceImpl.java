@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,7 +66,8 @@ public class CommentServiceImpl implements CommentService {
         int editedTimes = comment.getVersion();
         String newText = dto.getText();
 
-        if (user.isSubscribed() && editedTimes < 3 && !newText.equals("") && userId == comment.getAuthor().getId()) {
+        if (user.isSubscribed() && editedTimes < 3 && !newText.equals("")
+                && Objects.equals(userId, comment.getAuthor().getId())) {
             comment.setText(newText);
             comment.setState(CommentState.EDITED);
             comment.setVersion(editedTimes + 1);
@@ -89,7 +91,7 @@ public class CommentServiceImpl implements CommentService {
     public void deleteCommentByOwner(Long comId, Long userId, HttpServletRequest request) {
         Comment comment = checkComment(comId);
 
-        if (comment.getAuthor().getId() != userId)
+        if (!Objects.equals(comment.getAuthor().getId(), userId))
             throw new BadRequestException("Нельзя удалить чужой комментарий " + comId);
 
         commentRepository.deleteById(comId);
