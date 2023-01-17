@@ -22,7 +22,7 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @PostMapping("/{eventId}")
+    @PostMapping("/event/{eventId}")
     public CommentDto addComment(@PathVariable("eventId") Long eventId,
                                  @RequestBody NewCommentDto dto, HttpServletRequest request) {
         log.info(request.getMethod() + ": " + request.getRequestURI());
@@ -37,7 +37,7 @@ public class CommentController {
         return commentService.getComment(comId, request);
     }
 
-    @GetMapping("/{eventId}")
+    @GetMapping("/event/{eventId}")
     public List<CommentDto> getEventComments(@PathVariable("eventId") Long eventId,
                                              @RequestParam(defaultValue = "0") int from,
                                              @RequestParam(defaultValue = "10") int size,
