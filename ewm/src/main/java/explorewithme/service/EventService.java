@@ -37,4 +37,6 @@ public interface EventService {
     ParticipationRequestDto rejectEventRequest(long userId, long eventId, long reqId, HttpServletRequest request);
 
     ParticipationRequestDto cancelRequest(long userId, long reqId, HttpServletRequest request);
+
+    Event checkEvent(long eventId, HttpServletRequest request);
 }

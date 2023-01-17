@@ -15,6 +15,7 @@ public class UserMapper {
         return new User(
                 null,
                 newUser.getName(),
-                newUser.getEmail());
+                newUser.getEmail(),
+                false);
     }
 }

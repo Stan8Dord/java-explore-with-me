@@ -11,5 +11,9 @@ public interface UserService {
 
     User addNewUser(NewUserRequest newUser, HttpServletRequest request);
 
-    void deleteUser(long userId);
+    void deleteUser(Long userId);
+
+    void subscribeUser(Long userId, HttpServletRequest request);
+
+    User checkUser(Long userId, HttpServletRequest request);
 }

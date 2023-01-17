@@ -1,6 +1,6 @@
 # Explore with me 
 ---
-https://github.com/Stan8Dord/java-explore-with-me/pull/2
+
 ## Используемые технологии
 Java, Spring Boot, Hibernate, PostgreSQL, SQL, Maven, Docker 
 

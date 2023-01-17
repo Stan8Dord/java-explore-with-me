@@ -91,6 +91,7 @@ public class EventServiceImpl implements EventService {
         return EventMapper.toEventFullDto(event);
     }
 
+    @Override
     public Event checkEvent(long eventId, HttpServletRequest request) {
         return eventRepository.findById(eventId).orElseThrow(() -> new NotFoundEventException(eventId, request));
     }

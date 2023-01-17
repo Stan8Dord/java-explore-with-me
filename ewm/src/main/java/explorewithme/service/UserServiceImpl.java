@@ -2,6 +2,7 @@ package explorewithme.service;
 
 import explorewithme.exceptions.BadRequestException;
 import explorewithme.exceptions.ConflictException;
+import explorewithme.exceptions.NotFoundUserException;
 import explorewithme.model.user.NewUserRequest;
 import explorewithme.model.user.User;
 import explorewithme.model.user.UserMapper;
@@ -54,7 +55,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(long userId) {
+    public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
+    }
+
+    @Override
+    public void subscribeUser(Long userId, HttpServletRequest request) {
+        User user = checkUser(userId, request);
+        user.setSubscribed(true);
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public User checkUser(Long userId, HttpServletRequest request) {
+        return userRepository.findById(userId).orElseThrow(() -> new NotFoundUserException(userId, request));
     }
 }

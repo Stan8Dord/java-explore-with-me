@@ -24,14 +24,16 @@ public class AdminController {
     private final CategoryService categoryService;
     private final UserService userService;
     private final CompilationService compilationService;
+    private final CommentService commentService;
 
     @Autowired
     public AdminController(EventService eventService, CategoryService categoryService, UserService userService,
-                            CompilationService compilationService) {
+                           CompilationService compilationService, CommentService commentService) {
         this.eventService = eventService;
         this.categoryService = categoryService;
         this.userService = userService;
         this.compilationService = compilationService;
+        this.commentService = commentService;
     }
 
     @GetMapping("/events")
@@ -161,5 +163,19 @@ public class AdminController {
         log.info(request.getMethod() + ": " + request.getRequestURI());
 
         compilationService.unpinCompilation(compId);
+    }
+
+    @PatchMapping("/{comId}/approve")
+    public void approveComment(@PathVariable("comId") long comId, HttpServletRequest request) {
+        log.info(request.getMethod() + ": " + request.getRequestURI());
+
+        commentService.approveComment(comId);
+    }
+
+    @DeleteMapping("/{comId}")
+    public void deleteComment(@PathVariable("comId") long comId, HttpServletRequest request) {
+        log.info(request.getMethod() + ": " + request.getRequestURI());
+
+        commentService.deleteCommentByAdmin(comId);
     }
 }
