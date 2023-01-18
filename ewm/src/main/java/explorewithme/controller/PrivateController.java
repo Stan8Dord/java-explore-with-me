@@ -1,13 +1,13 @@
 package explorewithme.controller;
 
-import explorewithme.model.event.EventFullDto;
-import explorewithme.model.event.EventShortDto;
-import explorewithme.model.event.NewEventDto;
-import explorewithme.model.event.UpdateEventRequest;
-import explorewithme.model.request.ParticipationRequestDto;
-import explorewithme.service.EventService;
-import explorewithme.service.RequestService;
-import explorewithme.service.UserService;
+import explorewithme.model.event.dto.EventFullDto;
+import explorewithme.model.event.dto.EventShortDto;
+import explorewithme.model.event.dto.NewEventDto;
+import explorewithme.model.event.dto.UpdateEventRequest;
+import explorewithme.model.request.dto.ParticipationRequestDto;
+import explorewithme.service.event.EventService;
+import explorewithme.service.request.RequestService;
+import explorewithme.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

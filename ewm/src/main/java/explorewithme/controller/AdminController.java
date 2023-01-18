@@ -1,14 +1,18 @@
 package explorewithme.controller;
 
-import explorewithme.model.category.CategoryDto;
-import explorewithme.model.category.NewCategoryDto;
-import explorewithme.model.compilation.CompilationDto;
-import explorewithme.model.compilation.NewCompilationDto;
-import explorewithme.model.event.AdminUpdateEventRequest;
-import explorewithme.model.event.EventFullDto;
-import explorewithme.model.user.NewUserRequest;
+import explorewithme.model.category.dto.CategoryDto;
+import explorewithme.model.category.dto.NewCategoryDto;
+import explorewithme.model.compilation.dto.CompilationDto;
+import explorewithme.model.compilation.dto.NewCompilationDto;
+import explorewithme.model.event.dto.AdminUpdateEventRequest;
+import explorewithme.model.event.dto.EventFullDto;
+import explorewithme.model.user.dto.NewUserRequest;
 import explorewithme.model.user.User;
-import explorewithme.service.*;
+import explorewithme.service.category.CategoryService;
+import explorewithme.service.comment.CommentService;
+import explorewithme.service.compilation.CompilationService;
+import explorewithme.service.event.EventService;
+import explorewithme.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

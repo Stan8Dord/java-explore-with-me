@@ -1,9 +1,9 @@
 package explorewithme.controller;
 
-import explorewithme.model.comment.CommentDto;
-import explorewithme.model.comment.EditCommentDto;
-import explorewithme.model.comment.NewCommentDto;
-import explorewithme.service.CommentService;
+import explorewithme.model.comment.dto.CommentDto;
+import explorewithme.model.comment.dto.EditCommentDto;
+import explorewithme.model.comment.dto.NewCommentDto;
+import explorewithme.service.comment.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +23,9 @@ public class CommentController {
     }
 
     @PostMapping("/event/{eventId}")
+    @Validated
     public CommentDto addComment(@PathVariable("eventId") Long eventId,
-                                 @RequestBody NewCommentDto dto, HttpServletRequest request) {
+                                 @Valid @RequestBody NewCommentDto dto, HttpServletRequest request) {
         log.info(request.getMethod() + ": " + request.getRequestURI());
 
         return commentService.addComment(eventId, dto, request);

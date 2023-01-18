@@ -1,5 +1,7 @@
 package explorewithme.model.comment;
 
+import explorewithme.model.comment.dto.CommentDto;
+import explorewithme.model.comment.dto.NewCommentDto;
 import explorewithme.model.user.User;
 import lombok.experimental.UtilityClass;
 

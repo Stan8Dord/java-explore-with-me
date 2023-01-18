@@ -1,12 +1,12 @@
 package explorewithme.controller;
 
-import explorewithme.model.category.CategoryDto;
-import explorewithme.model.compilation.CompilationDto;
-import explorewithme.model.event.EventFullDto;
-import explorewithme.model.event.EventShortDto;
-import explorewithme.service.CategoryService;
-import explorewithme.service.CompilationService;
-import explorewithme.service.EventService;
+import explorewithme.model.category.dto.CategoryDto;
+import explorewithme.model.compilation.dto.CompilationDto;
+import explorewithme.model.event.dto.EventFullDto;
+import explorewithme.model.event.dto.EventShortDto;
+import explorewithme.service.category.CategoryService;
+import explorewithme.service.compilation.CompilationService;
+import explorewithme.service.event.EventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,5 +1,7 @@
 package explorewithme.model.user;
 
+import explorewithme.model.user.dto.NewUserRequest;
+import explorewithme.model.user.dto.UserShortDto;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

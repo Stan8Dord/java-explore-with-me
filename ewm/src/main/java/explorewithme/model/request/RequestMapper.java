@@ -1,6 +1,7 @@
 package explorewithme.model.request;
 
 import explorewithme.model.other.DateUtils;
+import explorewithme.model.request.dto.ParticipationRequestDto;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
