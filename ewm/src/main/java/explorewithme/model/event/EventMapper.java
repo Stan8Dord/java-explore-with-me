@@ -2,6 +2,9 @@ package explorewithme.model.event;
 
 import explorewithme.model.category.Category;
 import explorewithme.model.category.CategoryMapper;
+import explorewithme.model.event.dto.EventFullDto;
+import explorewithme.model.event.dto.EventShortDto;
+import explorewithme.model.event.dto.NewEventDto;
 import explorewithme.model.other.DateUtils;
 import explorewithme.model.other.Location;
 import explorewithme.model.user.User;

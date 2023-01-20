@@ -1,12 +1,13 @@
 package explorewithme.controller;
 
-import explorewithme.model.event.EventFullDto;
-import explorewithme.model.event.EventShortDto;
-import explorewithme.model.event.NewEventDto;
-import explorewithme.model.event.UpdateEventRequest;
-import explorewithme.model.request.ParticipationRequestDto;
-import explorewithme.service.EventService;
-import explorewithme.service.RequestService;
+import explorewithme.model.event.dto.EventFullDto;
+import explorewithme.model.event.dto.EventShortDto;
+import explorewithme.model.event.dto.NewEventDto;
+import explorewithme.model.event.dto.UpdateEventRequest;
+import explorewithme.model.request.dto.ParticipationRequestDto;
+import explorewithme.service.event.EventService;
+import explorewithme.service.request.RequestService;
+import explorewithme.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +21,13 @@ import java.util.List;
 public class PrivateController {
     private final EventService eventService;
     private final RequestService requestService;
+    private final UserService userService;
 
     @Autowired
-    public PrivateController(EventService eventService, RequestService requestService) {
+    public PrivateController(EventService eventService, RequestService requestService, UserService userService) {
         this.eventService = eventService;
         this.requestService = requestService;
+        this.userService = userService;
     }
 
     @GetMapping("/events")
@@ -118,5 +121,12 @@ public class PrivateController {
         log.info(request.getMethod() + ": " + request.getRequestURI());
 
         return eventService.cancelRequest(userId, reqId, request);
+    }
+
+    @PatchMapping("/subscribe")
+    public void subscribeUser(@PathVariable("userId") long userId, HttpServletRequest request) {
+        log.info(request.getMethod() + ": " + request.getRequestURI());
+
+        userService.subscribeUser(userId, request);
     }
 }

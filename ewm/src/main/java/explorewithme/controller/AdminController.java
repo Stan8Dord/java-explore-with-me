@@ -1,14 +1,18 @@
 package explorewithme.controller;
 
-import explorewithme.model.category.CategoryDto;
-import explorewithme.model.category.NewCategoryDto;
-import explorewithme.model.compilation.CompilationDto;
-import explorewithme.model.compilation.NewCompilationDto;
-import explorewithme.model.event.AdminUpdateEventRequest;
-import explorewithme.model.event.EventFullDto;
-import explorewithme.model.user.NewUserRequest;
+import explorewithme.model.category.dto.CategoryDto;
+import explorewithme.model.category.dto.NewCategoryDto;
+import explorewithme.model.compilation.dto.CompilationDto;
+import explorewithme.model.compilation.dto.NewCompilationDto;
+import explorewithme.model.event.dto.AdminUpdateEventRequest;
+import explorewithme.model.event.dto.EventFullDto;
+import explorewithme.model.user.dto.NewUserRequest;
 import explorewithme.model.user.User;
-import explorewithme.service.*;
+import explorewithme.service.category.CategoryService;
+import explorewithme.service.comment.CommentService;
+import explorewithme.service.compilation.CompilationService;
+import explorewithme.service.event.EventService;
+import explorewithme.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,14 +28,16 @@ public class AdminController {
     private final CategoryService categoryService;
     private final UserService userService;
     private final CompilationService compilationService;
+    private final CommentService commentService;
 
     @Autowired
     public AdminController(EventService eventService, CategoryService categoryService, UserService userService,
-                            CompilationService compilationService) {
+                           CompilationService compilationService, CommentService commentService) {
         this.eventService = eventService;
         this.categoryService = categoryService;
         this.userService = userService;
         this.compilationService = compilationService;
+        this.commentService = commentService;
     }
 
     @GetMapping("/events")
@@ -161,5 +167,19 @@ public class AdminController {
         log.info(request.getMethod() + ": " + request.getRequestURI());
 
         compilationService.unpinCompilation(compId);
+    }
+
+    @PatchMapping("/{comId}/approve")
+    public void approveComment(@PathVariable("comId") long comId, HttpServletRequest request) {
+        log.info(request.getMethod() + ": " + request.getRequestURI());
+
+        commentService.approveComment(comId);
+    }
+
+    @DeleteMapping("/{comId}")
+    public void deleteComment(@PathVariable("comId") long comId, HttpServletRequest request) {
+        log.info(request.getMethod() + ": " + request.getRequestURI());
+
+        commentService.deleteCommentByAdmin(comId);
     }
 }

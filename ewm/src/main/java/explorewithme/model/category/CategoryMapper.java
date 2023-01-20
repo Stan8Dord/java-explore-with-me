@@ -1,5 +1,7 @@
 package explorewithme.model.category;
 
+import explorewithme.model.category.dto.CategoryDto;
+import explorewithme.model.category.dto.NewCategoryDto;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

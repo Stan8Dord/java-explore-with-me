@@ -1,5 +1,7 @@
 package explorewithme.model.compilation;
 
+import explorewithme.model.compilation.dto.CompilationDto;
+import explorewithme.model.compilation.dto.NewCompilationDto;
 import explorewithme.model.event.Event;
 import explorewithme.model.event.EventMapper;
 import lombok.experimental.UtilityClass;

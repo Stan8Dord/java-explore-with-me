@@ -1,13 +1,12 @@
 package explorewithme.model.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
@@ -21,4 +20,6 @@ public class User {
     @Email
     @Column(nullable = false)
     private String email;
+    @Column(name = "is_subscribed")
+    private boolean isSubscribed;
 }
